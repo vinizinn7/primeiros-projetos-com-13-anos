@@ -3,29 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>media escolar</title>
-</head>
-<body>
+    <title>Média Escolar</title>
     <style>
-        body{
-           font-family: arial, sans-serif; 
-           background-color: #f0f4f7;
-           color: #333;
-           margin: 0;
-           padding: 0;
-           display: flex;
-           justify-content: center;
-           align-items: center;
-           height: 100vh;
-           text-align: center;
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f7;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
         }
-        .container{
+        .container {
             background-color: white;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);            
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
-        h1{
+        h1 {
             font-size: 2rem;
             color: #4caf50;
         }
@@ -36,14 +34,14 @@
             margin: 10px 0;
             font-size: 1.2rem;
         }
-        .aprovado{
+        .aprovado {
             color: #388e3c;
             font-weight: bold;
         }
-        .reprovado{
+        .reprovado {
             color: #d32f2f;
         }
-        button{
+        button {
             background-color: #4caf50;
             color: white;
             padding: 10px 20px;
@@ -53,110 +51,55 @@
             cursor: pointer;
             margin-top: 10px;
         }
-        button:hover{
+        button:hover {
             background-color: #45a049;
         }
-
     </style>
+</head>
+<body>
     <div class="container">
-    <h1>media escolar</h1>
+        <h1>Média Escolar</h1>
 
-    <div class="notat1" id="nota1"></div>
-        <div class="resultadot1" id="r1"></div>
+        <div class="nota" id="nota1"></div>
+        <div class="resultado" id="r1"></div>
 
-        <div class="notat2" id="nota2"></div>
-        <div class="resultadot2" id="r2"></div>
+        <div class="nota" id="nota2"></div>
+        <div class="resultado" id="r2"></div>
 
-        <div class="notat3" id="nota3"></div>
-        <div class="resultadot3" id="r3"></div>
+        <div class="nota" id="nota3"></div>
+        <div class="resultado" id="r3"></div>
 
-        <div class="notat4" id="nota4"></div>
-        <div class="resultadot4" id="r4"></div>
+        <div class="nota" id="nota4"></div>
+        <div class="resultado" id="r4"></div>
 
-        <button onclick="iniciar()"> caucular notas </button>
-
+        <button onclick="iniciar()">Calcular Notas</button>
     </div>
+
     <script>
-            
-    function iniciar(){    
-        
-        var nome1 = window.prompt('digite o nome do aluno')
-        var n1 = Number(window.prompt('digite sua primeira  nota! :)'))
-        var n2 = Number(window.prompt('digite sua segunda   nota! :)'))
-        var n3 = Number(window.prompt('digite sua terçeira nota! :)'))
-        var n4 = Number(window.prompt('digite sua quarta  nota! :)'))
-        var res1 = Number(n1 + n2 + n3 + n4)/4
-        
-        document.getElementById("nota1").innerText = `o aluno (a) ${nome1} teve a nota ${res1}`
-        if(res1 >= 7){     
-            var r1 = ('ele foi aprovado')
-            document.getElementById("r1").classList.add("aprovado")
-            document.getElementById("r1").classList.remove("reprovado")
-        }else if (res1 < 7){
-           var r1 = ('ele foi reprovado')
-           document.getElementById("r2").classList.add("reprovado")
-           document.getElementById("r2").classList.remove("aprovado")
-        }
-        document.getElementById("r1").innerText = ` o aluno  ${nome1} ${r1} `
+        function iniciar() {
+            for (let i = 1; i <= 4; i++) {
+                let nome = prompt(`Digite o nome do ${i}º aluno(a):`);
+                let notas = [];
+                for (let j = 1; j <= 4; j++) {
+                    notas.push(Number(prompt(`Digite a ${j}ª nota de ${nome}:`)));
+                }
+                let media = (notas[0] + notas[1] + notas[2] + notas[3]) / 4;
 
-            var nome2 = window.prompt('digite o nome do aluno')
-            var n5 = Number(window.prompt('digite sua primeira  nota! :)'))
-            var n6 = Number(window.prompt('digite sua segunda   nota! :)'))
-            var n7 = Number(window.prompt('digite sua terçeira nota! :)'))
-            var n8 = Number(window.prompt('digite sua quarta  nota! :)'))
-            var res2 = Number(n5 + n6 + n7 + n8)/4
-        
-            document.getElementById("nota2").innerText = `o aluno (a) ${nome2} teve a nota ${res2}`
-            if(res2 >= 7){
-               var r2 = 'ele foi aprovado'
-               document.getElementById("r2").classList.add("aprovado")
-               document.getElementById("r2").classList.remove("reprovado")
-            }else{
-               var r2 = 'ele foi reprovado'
-               document.getElementById("r2").classList.add("reprovado")
-               document.getElementById("r2").classList.remove("aprovado")
-           }
-           document.getElementById("r2").innerText = ` o aluno  ${nome2} ${r2} `
-                  
-           var nome3 = window.prompt('digite o nome do aluno')
-           var n9 = Number(window.prompt('digite sua primeira  nota! :)'))                                                         
-           var n10 = Number(window.prompt('digite sua segunda   nota! :)'))
-           var n11 = Number(window.prompt('digite sua terçeira nota! :)'))
-           var n12 = Number(window.prompt('digite sua quarta  nota! :)'))
-           var res3 = Number(n9 + n10 + n11 + n12)/4
-        
-           document.getElementById("nota3").innerText = `o aluno (a) ${nome3} teve a nota ${res3}`
-           if(res3 >= 7){
-              var r3 = 'ele foi aprovado'
-              document.getElementById("r3").classList.add("aprovado")
-              document.getElementById("r3").classList.remove("reprovado")
-           }else{
-              var r3 = 'ele foi reprovado'
-              document.getElementById("r3").classList.add("reprovado")
-               document.getElementById("r3").classList.remove("aprovado")
-        }
-          document.getElementById("r3").innerText = ` o aluno  ${nome3} ${r3} `
+                document.getElementById(`nota${i}`).innerText = `O aluno(a) ${nome} teve média ${media.toFixed(1)}`;
 
-              
-           var nome4 = window.prompt('digite o nome do aluno')
-           var n13 = Number(window.prompt('digite sua primeira  nota! :)'))
-           var n14 = Number(window.prompt('digite sua segunda   nota! :)'))
-           var n15 = Number(window.prompt('digite sua terçeira nota! :)'))
-           var n16 = Number(window.prompt('digite sua quarta  nota! :)'))
-           var res4 = Number(n13 + n14 + n15 + n16)/4
-        
-           document.getElementById("nota4").innerText = `o aluno (a) ${nome4} teve a nota ${res4}`
-           if(res4 >= 7){
-              var r4 = 'ele foi aprovado'
-              document.getElementById("r4").classList.add("aprovado")
-               document.getElementById("r4").classList.remove("reprovado")
-           }else{
-              var r4 = 'ele foi reprovado'
-              document.getElementById("r4").classList.add("reprovado")
-               document.getElementById("r4").classList.remove("aprovado")
+                const resultadoId = `r${i}`;
+                const resultadoDiv = document.getElementById(resultadoId);
+                resultadoDiv.classList.remove("aprovado", "reprovado");
+
+                if (media >= 7) {
+                    resultadoDiv.classList.add("aprovado");
+                    resultadoDiv.innerText = `O aluno(a) ${nome} foi aprovado(a).`;
+                } else {
+                    resultadoDiv.classList.add("reprovado");
+                    resultadoDiv.innerText = `O aluno(a) ${nome} foi reprovado(a).`;
+                }
+            }
         }
-          document.getElementById("r4").innerText = ` o aluno  ${nome4} ${r4} `
-    }
     </script>
 </body>
 </html>

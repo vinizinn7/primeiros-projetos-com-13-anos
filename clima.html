@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>clima</title>
+    <style>
+        body{
+            text-align: center;
+            margin-top: 50px;
+            font: normal 15pt arial; 
+           background-color: rgba(0, 228, 228, 0.829);
+        }
+        h1{
+            color: gold;
+        }
+        div{
+            font: normal 20pt arial;
+            color: yellow;
+        }
+        button{
+            background-color: gold;
+            font: normal 15pt arial;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1 id="h1">clima da sua cidade ☀️</h1>
+    <div id="data"></div>
+    <div id="hora"></div>
+         <br>
+         <br>
+         <br>
+        <button onclick="verificar()"> ver clima</button>
+        <br>
+        <br>
+        <div id="clima"></div>
+        <div id="noite"></div>
+        <div id="tarde" ></div>
+    <script>
+       var data = new Date()
+       
+       var dia =  data.getDate()
+       var mes = data.getMonth()
+       var ano = data.getFullYear()
+
+       var hora = data.getHours() 
+       var minutos = data.getMinutes()
+
+       document.getElementById("data").innerText = `data: ${dia}/0${mes}/${ano}`
+       document.getElementById("hora").innerText = `hora: ${hora}:${minutos}`  
+       function verificar(){
+           document.getElementById("clima").innerText = '30ºC em RECIFE no dia de hoje! '
+           
+       }
+       if ( hora >= 4 && hora < 13){
+            alert('bom dia ☀️')
+          document.getElementById("noite").innerText = 'bom dia! ☀️ '
+          document.body.style.backgroundColor = '#ADD8E6'
+    } else if(hora > 17 || hora < 4 ){
+        alert('boa noite 🌙')
+          document.getElementById("h1").innerText = 'clima da sua cidade 🌙' 
+          document.body.style.backgroundColor = '#1c1c1c'  // Fundo escuro
+          document.getElementById("noite").innerText = 'boa noite! 🌑'
+       }else{
+        alert('boa tarde 🌤️')
+          document.getElementById("h1").innerText = 'clima da sua cidade 🌤️' 
+          document.body.style.backgroundColor =  '#87CEEB' 
+          document.getElementById("tarde").innerText = 'boa tarde! 🌤️'
+       }
+
+       
+    </script>
+</body>
+</html>

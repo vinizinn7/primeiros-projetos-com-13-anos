@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Caçador de Monstros</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #222; overflow: hidden; }
+    canvas { display: block; margin: auto; background: #111; image-rendering: pixelated; }
+    #hud {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      color: white;
+      font-family: monospace;
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="gameCanvas" width="800" height="600"></canvas>
+  <div id="hud">
+    <div id="score">Pontos: 0</div>
+    <div id="life">Vida: ♥♥♥</div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById("gameCanvas");
+    const ctx = canvas.getContext("2d");
+
+    let keys = {}; 
+    let score = 0;
+    let life = 3;
+
+    document.addEventListener("keydown", e => keys[e.key] = true);
+    document.addEventListener("keyup", e => keys[e.key] = false);
+
+    const player = {
+      x: 400,
+      y: 300,
+      size: 32,
+      speed: 3,
+      color: "lime"
+    };
+
+    const enemies = [];
+
+    function spawnEnemy() {
+      const side = Math.random() < 0.5 ? "horizontal" : "vertical";
+      const enemy = {
+        size: 28,
+        color: "red"
+      };
+
+      if (side === "horizontal") {
+        enemy.x = Math.random() < 0.5 ? 0 : canvas.width;
+        enemy.y = Math.random() * canvas.height;
+      } else {
+        enemy.x = Math.random() * canvas.width;
+        enemy.y = Math.random() < 0.5 ? 0 : canvas.height;
+      }
+
+      enemy.vx = (player.x - enemy.x) / 120;
+      enemy.vy = (player.y - enemy.y) / 120;
+
+      enemies.push(enemy);
+    }
+
+    function drawPlayer() {
+      ctx.fillStyle = player.color;
+      ctx.fillRect(player.x, player.y, player.size, player.size);
+    }
+
+    function drawEnemies() {
+      enemies.forEach(e => {
+        ctx.fillStyle = e.color;
+        ctx.fillRect(e.x, e.y, e.size, e.size);
+      });
+    }
+
+    function updatePlayer() {
+      if (keys["w"] || keys["ArrowUp"]) player.y -= player.speed;
+      if (keys["s"] || keys["ArrowDown"]) player.y += player.speed;
+      if (keys["a"] || keys["ArrowLeft"]) player.x -= player.speed;
+      if (keys["d"] || keys["ArrowRight"]) player.x += player.speed;
+
+      // Limites
+      player.x = Math.max(0, Math.min(canvas.width - player.size, player.x));
+      player.y = Math.max(0, Math.min(canvas.height - player.size, player.y));
+    }
+
+    function updateEnemies() {
+      enemies.forEach(e => {
+        e.x += e.vx;
+        e.y += e.vy;
+
+        // Colisão com player
+        if (Math.abs(e.x - player.x) < 28 && Math.abs(e.y - player.y) < 28) {
+          enemies.splice(enemies.indexOf(e), 1);
+          life--;
+          document.getElementById("life").innerText = `Vida: ${"\u2665".repeat(life)}`;
+
+          if (life <= 0) {
+            alert("Game Over! Pontuação: " + score);
+            window.location.reload();
+          }
+        }
+      });
+    }
+
+    function attack() {
+      enemies.forEach(e => {
+        if (Math.abs(e.x - player.x) < 40 && Math.abs(e.y - player.y) < 40) {
+          enemies.splice(enemies.indexOf(e), 1);
+          score += 10;
+          document.getElementById("score").innerText = `Pontos: ${score}`;
+        }
+      });
+    }
+
+    document.addEventListener("keydown", e => {
+      if (e.key === " ") attack();
+    });
+
+    function gameLoop() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      updatePlayer();
+      updateEnemies();
+      drawPlayer();
+      drawEnemies();
+
+      requestAnimationFrame(gameLoop);
+    }
+
+    setInterval(spawnEnemy, 2000);
+    gameLoop();
+  </script>
+</body>
+</html>

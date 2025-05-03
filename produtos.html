@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            text-align: center;
+            background-color: rgb(70,142,236);
+        }
+        h1{
+            color: white;
+        }
+        .res{
+            font: normal 20pt arial;
+            color: white
+
+        }
+    </style>
+</head>
+<body>
+    <h1>cadastro de produtos</h1>
+    
+    <div class="nome">
+        <label for="nome">nome do produto:</label>
+        <input type="text" name="nome" id="nome">
+    </div>
+    <br>
+    <div class="preço">
+        <label for="preço">preço:</label>
+        <input type="number" name="preço" id="preço">
+    </div>
+    <br>
+    <div class="quantidade">
+        <label for="quantidade">quantidade:</label>
+        <input type="number" name="quantidade" id="quantidade">
+    </div>
+    <br>
+    <button onclick="finalizar()">finalizar</button>
+    <button onclick="caucular()">calcular</button>
+    <script>
+        let preco = 0
+        let quantidade = 0
+        function finalizar(){
+            let txtn = document.getElementById("nome")
+            let nome = (txtn.value)
+            let txtp = document.getElementById("preço")
+            let txtq = document.getElementById("quantidade")
+
+             preco = (txtp.value)
+             quantidade = (txtq.value)
+
+            alert('novo produto cadastrado')
+           var res =  document.getElementById("res").innerText = (`foram cadastrados ${quantidade}  ${nome} com o preço de ${preco}`)
+           let caucula = document.getElementById("caucular").innerText = 'click a que  pra ver o 👆 valor total '
+        }
+        function caucular(){
+            let caucula = preco*quantidade
+            let res = document.getElementById("caucular").innerText = `a valor total deu: ${caucula}`
+        }
+    </script>
+    <br>
+    <div id="caucular"></div>
+    <div id="res" class="res"></div>
+</body>
+</html>

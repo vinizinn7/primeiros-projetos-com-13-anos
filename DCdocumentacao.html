@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            font: normal 15pt arial;
+            background: #111827;
+            color: white;
+        }
+        header{
+            border-radius: 10px;
+          background: #1f2937;
+          color: white;
+          padding: 10px;
+        }
+        header h1{
+            text-align: center;
+        }
+        nav a{
+            text-decoration: none;
+            color: #a5b4fc;
+        }
+       button{
+        background-color: #6366f1;
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+       }
+    </style>
+</head>
+<body>
+    <header>
+      <h1> tarefas</h1>
+      <nav>
+     <a href="#inicio">inicio</a>
+     <a href="#contato">contato</a>
+     <a href="#tarefas">tarefas</a>
+   </nav>   
+    </header>
+   
+   <p>olá 👋 eu sou vinicius bem vindo ao meu site esse site! é conposto pra solucionar tarefaz do dia a dia como treinar 💪 estudar 📚 e etc... neavege pelo meu site e tenha uma otima esperiencia até logo 👋 🚀 </p>
+   <br>
+   <br>
+   <section>
+       <h2>ideias de tarefas:</h2>
+      <li>estudar 1 hora de matemática</li>
+       <li>programar 30 minutos</li>
+       <li>fazer 50 flexões</li>
+       <li>organizar o quarto</li>
+       <li>criar um projeto no giithub</li>
+       <button onclick="motivacao()">motivação 💪</button>
+   </section>
+   <footer>
+     <h2>organizar minhas tarefas:</h2>
+     <p>organizar o seu dia é essencial para ter sucesso! <br>
+    veja dicas rapidas:</p>
+    <ul>
+       <li>priorize o que é mais importante primeiro  ✅</li> 
+       <li>divida grandes tarefas em passos pequenos 📝</li>
+       <li>reserve horarios certos para estudar e descança 🕒</li>
+    </ul>
+    <button onclick="outrosite()">Organizar Minhas Tarefas ➡️</button>
+   </footer>
+   <footer class="contato">
+    <nav>
+        <h2>contato:</h2>
+    <a href="mailto:vf3971203@gmail.com"> &copy; entre em contato comigo</a>
+    </nav>
+   </footer>
+   <script>
+    function motivacao(){
+        if (Math.random() < 0.5){
+            alert('Você não precisa ser perfeito, só precisa ser constante. É isso que constrói gigantes. 🚀')
+        }else{
+            alert('Desistir é a única coisa que realmente te impede de vencer. 🎯')
+        }
+    }
+    function outrosite(){
+        window.location.href = 'file:///C:/Users/Vini/Documents/estudos/cursoJS/projetos/DCdocumentacao.html'
+    }
+   </script>
+</body>
+</html>
